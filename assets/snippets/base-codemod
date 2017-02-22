@@ -1,0 +1,9 @@
+export default function transform(file, api) {
+  const j = api.jscodeshift;
+
+  const ast = j(file.source);
+
+  // Modify the AST
+
+  return ast.toSource();
+};

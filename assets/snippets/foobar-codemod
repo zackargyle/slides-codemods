@@ -1,0 +1,8 @@
+export default function transform(file, api) {
+  const j = api.jscodeshift;
+
+  return j(file.source)
+    .find(j.Identifier, { name: 'foo' })
+    .replaceWith(j.identifier('boo'))
+    .toSource();
+};
