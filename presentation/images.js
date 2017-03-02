@@ -3,6 +3,7 @@ import preloader from "spectacle/lib/utils/preloader";
 const images = {
   ast: {
     explorer: require('../assets/images/ast-explorer.png'),
+    forEach: require('../assets/images/forEach.png'),
     parsed: require('../assets/images/ast-parsed.png'),
     preparsed: require('../assets/images/ast-preparsed.png'),
     tokenized: require('../assets/images/ast-tokenized.png'),
@@ -10,7 +11,6 @@ const images = {
     vizualization: require('../assets/images/tree-viz.png'),
   },
   bio: require("../assets/images/bio.png"),
-  burningBook: require("../assets/images/burning-book.jpg"),
   icon: {
     github: require('../assets/images/icon-github.png'),
     medium: require('../assets/images/icon-medium.png'),

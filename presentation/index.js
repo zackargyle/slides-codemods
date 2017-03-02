@@ -31,51 +31,6 @@ require("spectacle/lib/themes/default/index.css");
 
 const CodeStyle = { minWidth: "60%", maxWidth: "60%", fontSize: "1rem", display: "inline-block", verticalAlign: "top" };
 
-/*
-https://github.com/DrewML/jscodeshift-intro-presentation/blob/master/presentation/index.js
-https://github.com/FormidableLabs/spectacle
-https://github.com/facebook/jscodeshift
-
-[3] Intro
-[5] Codemod Overview
-[5] AST Primer
-[5] JSCodeshift
-[10] Examples
-[5] JSX
-[10] Q&A
-
-Overview
-  - Example. Webpack 1 -> Webpack 2: https://github.com/webpack/webpack-cli/pull/40. ExtractTextPlugin
-  - Sample code: store.dispatch => erots.hctapsid
-    - https://github.com/facebook/jscodeshift/blob/master/sample/reverse-identifiers.js
-JSCodeshift
-  - Node, Path, Collection, Recast
-
-JSX
-
-
-
-arrow-functions
-
-// Replace bound functions
-const thisBoundEpression = (
-  <CallExpression arguments={[<ThisExpression />]}>
-    <MemberExpression>
-      <FunctionExpression />
-      <Identifier value="bind" />
-    </MemberExpression>
-  </CallExpression>
-);
-
-const arrowFunc = (node) => (
-  <ArrowFunctionExpression>
-    {node.callee.object.body}
-  </ArrowFunctionExpression>
-);
-
-j.find(thisBoundEpression).replaceWith(arrowFunc);
-*/
-
 export default class Presentation extends React.Component {
   render() {
     return (
@@ -204,8 +159,12 @@ export default class Presentation extends React.Component {
             <Image src={images.ast.tokenized.replace("/", "")} width="75%"/>
           </Slide>
 
-          <Slide>
+          <Slide notes="variableDeclarator: { id, init }">
             <Image src={images.ast.parsed.replace("/", "")} width="75%"/>
+          </Slide>
+
+          <Slide notes="forEach polyfill">
+            <Image src={images.ast.forEach.replace("/", "")} width="70%"/>
           </Slide>
 
           <Slide>
@@ -225,7 +184,7 @@ export default class Presentation extends React.Component {
             />
           </Slide>
 
-          <Slide>
+          <Slide notes="strings, numbers, regex">
             <Heading>Literal</Heading>
             <CodePane
               lang="js"
@@ -351,8 +310,6 @@ export default class Presentation extends React.Component {
             ]}
           />
 
-          {/* https://github.com/benjamn/ast-types/blob/master/def/core.js */}
-
           <Slide>
             <Heading style={{ paddingBottom: '2px' }}>AST Types</Heading>
             <Image src={images.ast.types.replace("/", "")} width="100%"/>
@@ -369,18 +326,6 @@ export default class Presentation extends React.Component {
             <Image src={images.gif.impossible.replace("/", "")} width="100%"/>
           </Slide>
 
-
-
-
-
-
-
-
-
-
-
-
-
           {/* Mystery -- JSX */}
 
           <Slide>
@@ -392,17 +337,17 @@ export default class Presentation extends React.Component {
           <CodeSlide
               lang="js"
             transition={[]}
-            code={require("raw-loader!../assets/snippets/foobar-codemod-jsx")}
+            code={require("raw-loader!../assets/snippets/codemod-jsx")}
             ranges={[
-                { loc: [0, 9], title: "Use JSX" }
+                { loc: [0, 19], title: "Using JSX" }
             ]}
+            $padding="25% 0 45%"
+            style={{ fontSize: '.6em' }}
           />
 
           <Slide>
             <Image src={images.gif.notReady.replace("/", "")} width="100%"/>
           </Slide>
-
-          {/* https://github.com/facebook/jscodeshift/pull/162 */}
 
           {/* Q&A */}
 
@@ -427,19 +372,6 @@ export default class Presentation extends React.Component {
               <Image src={images.icon.github.replace("/", "")} width="10%" style={{ padding: 10 }} />
             </Link>
           </Slide>
-
-  {/*
-      <Link target="_blank" href="http://isfiberreadyyet.com">Is Fiber Ready Yet?</Link>
-      <CodePane
-        lang="js"
-        style={{ ...CodeStyle, fontSize: ".9rem", minWidth: "50%", maxWidth: "50%" }}
-        source={require("raw-loader!../assets/snippets/jsx")}
-      />
-      <Quote style={{ color: "#000", fontSize: "24px", fontWeight: "normal", textAlign: "left" }}>
-        "Fiber reimplements the reconciler. It is not principally concerned with rendering, though renderers will need to change to support (and take advantage of) the new architecture." - acdlite
-      </Quote>
-
-  */}
 
         </Deck>
       </Spectacle>

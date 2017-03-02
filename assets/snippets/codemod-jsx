@@ -1,0 +1,18 @@
+export default function transform(file, api) {
+  const j = api.jscodeshift;
+
+  return j(file.source)
+    .find(<FunctionDeclaration />)
+    .forEach(function(path) {
+      j(path).replaceWith(
+        <VariableDeclaration type="const">
+          <VariableDeclarator>
+            {path.node.id}
+            <ArrowFunctionExpression params={path.node.params}>
+              {path.node.body}
+            </ArrowFunctionExpression>
+          </VariableDeclarator>
+        </VariableDeclaration>
+      );
+    }).toSource();
+};
